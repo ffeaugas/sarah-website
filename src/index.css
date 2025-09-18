@@ -1,0 +1,49 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'HostGrotesk';
+  src: url('/fonts/HostGrotesk-VariableFont_wght.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prata';
+  src: url('/fonts/Prata-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-prata {
+  font-family: 'Prata', serif !important;
+}
+
+.font-host-grotesk {
+  font-family: 'HostGrotesk', sans-serif !important;
+}
+
+.animate-bounce-slow {
+  animation: bounce 4s ease-in-out infinite;
+}
+
+@keyframes float-with-pause {
+  0% {
+    transform: translateY(0px);
+  }
+  30% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(0px);
+  }
+  60%,
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float-pause {
+  animation: float-with-pause 4s ease-in-out infinite;
+}
