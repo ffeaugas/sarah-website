@@ -1,10 +1,12 @@
 import { useRef } from 'react';
 import { useInView } from 'framer-motion';
 import { motion } from 'framer-motion';
+import useMobileView from '../hooks/useMobileView';
 
 const PresentationSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: '-100px' });
+  const isMobile = useMobileView();
 
   return (
     <motion.section
@@ -13,13 +15,13 @@ const PresentationSection = () => {
       initial={{ opacity: 0, y: 100 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="w-full h-screen flex flex-row items-center justify-center px-[20%] gap-10"
+      className="w-full h-screen flex lg:flex-row flex-col items-center justify-center lg:px-[20%] gap-10"
     >
       <motion.div
         initial={{ x: -100, opacity: 0 }}
         animate={isInView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="w-1/2 h-[60%] flex flex-col items-center justify-between"
+        className="lg:w-1/2 w-full lg:h-[60%] flex flex-col items-center justify-between lg:gap-0 gap-3 px-4"
       >
         <motion.p
           className="text-md"
@@ -38,18 +40,22 @@ const PresentationSection = () => {
           séances
         </motion.p>
 
+        {isMobile && <hr className="w-[80%] border-t-2 border-gray-300 " />}
+
         <motion.div
-          className="flex flex-col w-full"
+          className="flex flex-col w-full lg:items-start items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h2 className="text-2xl font-bold leading-12">Certifications</h2>
+          <h2 className="lg:text-2xl text-lg font-bold lg:leading-12 leading-8">
+            Certifications
+          </h2>
           <motion.ul
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-blue-950 italic"
+            className="text-blue-950 italic text-sm lg:text-lg"
           >
             <motion.li
               initial={{ opacity: 0, x: -50 }}
@@ -75,13 +81,17 @@ const PresentationSection = () => {
           </motion.ul>
         </motion.div>
 
+        {isMobile && <hr className="w-[80%] border-t-2 border-gray-300 " />}
+
         <motion.div
-          className="flex flex-col w-full"
+          className="flex flex-col w-full lg:items-start items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <h2 className="text-2xl font-bold leading-12">Expériences</h2>
+          <h2 className="lg:text-2xl text-lg font-bold lg:leading-12 leading-8">
+            Expériences
+          </h2>
           <motion.ul
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -91,7 +101,7 @@ const PresentationSection = () => {
             <motion.img
               src={'education-nationale-logo.png'}
               alt="Logo de l'éducation nationale"
-              className="w-25 h-25"
+              className="lg:w-25 lg:h-25 w-10 h-10"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : { opacity: 0, x: -100 }}
               transition={{ duration: 0.8, delay: 0.7 }}
@@ -99,7 +109,7 @@ const PresentationSection = () => {
             <motion.img
               src={'gendarmerie-logo.png'}
               alt="Logo de la gendarmerie nationale"
-              className="w-25 h-25"
+              className="lg:w-25 lg:h-25 w-10 h-10"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : { opacity: 0, x: -100 }}
               transition={{ duration: 0.8, delay: 1 }}
@@ -107,7 +117,7 @@ const PresentationSection = () => {
             <motion.img
               src={'kine-logo.png'}
               alt="Logo de l'institut kinésithérapie de Paris 11"
-              className="w-25 h-25"
+              className="lg:w-25 lg:h-25 w-10 h-10"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : { opacity: 0, x: -100 }}
               transition={{ duration: 0.8, delay: 1.3 }}
@@ -117,9 +127,9 @@ const PresentationSection = () => {
       </motion.div>
 
       <motion.img
-        src={'presentation-1.jpg'}
+        src={isMobile ? 'main.jpg' : 'presentation-1.jpg'}
         alt="Sarah Bencharef en équilibre au sommet d'une montagne"
-        className="w-1/2 h-[60%] object-cover"
+        className="lg:w-1/2 w-full lg:h-[60%] h-[40%] object-cover"
         initial={{ x: 100, opacity: 0 }}
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 }}

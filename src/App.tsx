@@ -111,10 +111,10 @@ const HeroSection = ({ spanData, setHoveredSpan }: HeroSectionProps) => {
         className="z-10 top-25 right-12 absolute font-host-grotesk text-gray-900 flex flex-col text-right"
         style={{ opacity }}
       >
-        <motion.h1 className="text-[8rem] font-semibold leading-none">
+        <motion.h1 className="text-[3rem] lg:text-[8rem] font-semibold leading-none">
           Sarah Bencharef
         </motion.h1>
-        <h2 className="text-[2rem] font-semibold mt-2 text-gray-800">
+        <h2 className="text-[.8rem] lg:text-[2rem] font-semibold mt-2 text-gray-800">
           {spanData.map((item, index) => (
             <span key={item.id}>
               <span
