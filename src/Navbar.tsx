@@ -20,7 +20,7 @@ const Navbar = ({ activeSection }: INavbarProps) => {
   };
 
   return (
-    <nav className="w-full fixed z-50 flex flex-row items-center justify-center lg:gap-20 gap-10 py-3 lg:text-lg text-sm font-host-grotesk">
+    <nav className="opacity-50 w-full fixed z-50 flex flex-row bg-white items-center justify-center lg:gap-20 gap-10 py-2 lg:text-lg text-sm font-host-grotesk">
       {navItems.map(item => (
         <a
           key={item.id}

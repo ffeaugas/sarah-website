@@ -18,16 +18,25 @@ function App() {
       id: 'danceuse',
       text: 'Danseuse',
       image: '/dance.jpg',
+      gradient:
+        'linear-gradient(120deg, rgba(0,123,255,0.25) 0%, rgba(255,0,123,0.25) 100%)',
+      right: '50px',
     },
     {
       id: 'choreographe',
       text: 'Chorégraphe',
       image: '/chore.jpg',
+      gradient:
+        'linear-gradient(120deg, rgba(0,255,0,0.15) 0%, rgba(222,122,0,0.38) 100%)',
+      right: '200px',
     },
     {
       id: 'professeure',
       text: 'Professeure de pilate',
       image: '/teaching.jpg',
+      gradient:
+        'linear-gradient(120deg, rgba(255,128,0,0.25) 0%, rgba(255,0,0,0.25) 100%)',
+      right: '350px',
     },
   ];
 
@@ -72,7 +81,11 @@ function App() {
     <div className="h-screen relative w-full">
       <Navbar activeSection={activeSection} />
 
-      <HeroSection spanData={spanData} setHoveredSpan={setHoveredSpan} />
+      <HeroSection
+        spanData={spanData}
+        setHoveredSpan={setHoveredSpan}
+        hoveredSpan={hoveredSpan}
+      />
 
       <ImagePreview hoveredSpan={hoveredSpan} spanData={spanData} />
 
@@ -92,9 +105,14 @@ export default App;
 interface HeroSectionProps {
   spanData: SpanData[];
   setHoveredSpan: (id: string | null) => void;
+  hoveredSpan: string | null;
 }
 
-const HeroSection = ({ spanData, setHoveredSpan }: HeroSectionProps) => {
+const HeroSection = ({
+  spanData,
+  setHoveredSpan,
+  hoveredSpan,
+}: HeroSectionProps) => {
   const { scrollYProgress } = useScroll();
   const isMobile = useMobileView();
   const padding = useTransform(scrollYProgress, [0, 1], [0, 400]);
@@ -110,23 +128,24 @@ const HeroSection = ({ spanData, setHoveredSpan }: HeroSectionProps) => {
           ease: 'easeOut',
           delay: 0.3,
         }}
-        className="z-30 lg:top-25 top-12 lg:right-12 right-4 absolute font-host-grotesk text-gray-900 flex flex-col text-right"
+        className="lg:top-20 top-14 absolute font-host-grotesk text-gray-900 flex flex-row text-left justify-between w-full px-15"
         style={{ opacity }}
       >
-        <motion.h1 className="text-[3rem] lg:text-[8rem] font-semibold leading-none">
-          Sarah Bencharef
+        <motion.h1 className="z-3 text-[3rem] lg:text-[9rem] font-semibold leading-none font-prata">
+          Sarah
+          <br />
+          Bencharef
         </motion.h1>
-        <h2 className="text-[.8rem] lg:text-[2rem] font-semibold mt-2 text-gray-800">
+        <h2 className="flex flex-col text-[.8rem] lg:text-[2.5rem] font-semibold mt-2 text-gray-800 z-20 text-right">
           {spanData.map((item, index) => (
             <span key={item.id}>
               <span
-                className="text-gray-900 hover:text-gray-500 transition-colors duration-300 cursor-pointer"
+                className="text-gray-900 hover:text-gray-100 transition-colors duration-300 cursor-pointer"
                 onMouseEnter={() => setHoveredSpan(item.id)}
                 onMouseLeave={() => setHoveredSpan(null)}
               >
                 {item.text}
               </span>
-              {index < spanData.length - 1 && ' - '}
             </span>
           ))}
         </h2>
@@ -135,14 +154,55 @@ const HeroSection = ({ spanData, setHoveredSpan }: HeroSectionProps) => {
         className="w-full h-full"
         style={{ padding: isMobile ? '0' : padding }}
       >
-        <img
-          src={isMobile ? 'presentation-1.jpg' : 'main.jpg'}
-          alt="Sarah Bencharef en équilibre au sommet d'une montagne"
-          className="w-full h-full object-cover"
-          style={{
-            borderRadius: scrollYProgress && !isMobile ? '20px' : '0',
-          }}
-        />
+        <div className="relative w-full h-full">
+          <img
+            src={'main-foreground.png'}
+            alt="Premier plan devant Sarah Bencharef"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{
+              borderRadius: scrollYProgress && !isMobile ? '20px' : '0',
+              zIndex: 4,
+            }}
+          />
+          <img
+            src={'main-sarah.png'}
+            alt="Sarah Bencharef en équilibre au sommet d'une montagne"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{
+              borderRadius: scrollYProgress && !isMobile ? '20px' : '0',
+              zIndex: 3,
+            }}
+          />
+          <div
+            className="absolute inset-0 w-full h-full"
+            style={{
+              borderRadius: scrollYProgress && !isMobile ? '20px' : '0',
+              zIndex: 1.5,
+            }}
+          >
+            <img
+              src={'main-sky.png'}
+              alt="Ciel derrière Sarah Bencharef"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{
+                borderRadius: scrollYProgress && !isMobile ? '20px' : '0',
+                zIndex: 0,
+              }}
+            />
+            <div
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              style={{
+                background: hoveredSpan
+                  ? spanData.find(s => s.id === hoveredSpan)?.gradient
+                  : 'transparent',
+                borderRadius: scrollYProgress && !isMobile ? '20px' : '0',
+                zIndex: 2,
+                mixBlendMode: 'multiply',
+              }}
+              aria-hidden="true"
+            />
+          </div>
+        </div>
       </motion.div>
     </>
   );
