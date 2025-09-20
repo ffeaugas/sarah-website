@@ -1,3 +1,5 @@
+import useMobileView from '../hooks/useMobileView';
+
 export type SpanData = {
   id: string;
   text: string;
@@ -10,6 +12,9 @@ interface ImagePreviewProps {
 }
 
 const ImagePreview = ({ hoveredSpan, spanData }: ImagePreviewProps) => {
+  const isMobile = useMobileView();
+  if (isMobile) return null;
+
   return (
     <div
       className={`fixed top-[50%] right-15 transform -translate-y-1/2 w-96 h-120 transition-opacity duration-2000 ease-out z-20 ${

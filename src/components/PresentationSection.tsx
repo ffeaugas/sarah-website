@@ -15,7 +15,7 @@ const PresentationSection = () => {
       initial={{ opacity: 0, y: 100 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="w-full h-screen flex lg:flex-row flex-col items-center justify-center lg:px-[20%] gap-10"
+      className="w-full lg:h-screen h-auto flex lg:flex-row flex-col items-center justify-center lg:px-[20%] gap-10 py-10 lg:py-0"
     >
       <motion.div
         initial={{ x: -100, opacity: 0 }}
@@ -129,9 +129,13 @@ const PresentationSection = () => {
       <motion.img
         src={isMobile ? 'main.jpg' : 'presentation-1.jpg'}
         alt="Sarah Bencharef en équilibre au sommet d'une montagne"
-        className="lg:w-1/2 w-full lg:h-[60%] h-[40%] object-cover"
-        initial={{ x: 100, opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        className="lg:w-1/2 w-[80%] lg:h-[60%] h-[40%] object-cover"
+        initial={{ x: isMobile ? 0 : 100, opacity: 0 }}
+        animate={
+          isInView
+            ? { x: 0, opacity: 1 }
+            : { x: isMobile ? 0 : 100, opacity: 0 }
+        }
         transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 }}
       />
     </motion.section>

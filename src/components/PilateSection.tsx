@@ -7,7 +7,7 @@ const PilatesSection = () => {
 
   return (
     <section
-      className="w-full h-screen flex flex-col items-center justify-center px-[10%] gap-10 bg-gray-200 relative"
+      className="w-full lg:h-screen h-auto flex flex-col items-center justify-center lg:px-[10%] px-4 gap-10 bg-gray-200 relative py-10 lg:py-0 lg:pb-0 pb-30"
       id="pilates"
     >
       <motion.div
@@ -17,12 +17,14 @@ const PilatesSection = () => {
         transition={{ duration: 1.2, ease: 'easeOut' }}
         className="flex flex-col w-full h-full gap-20 py-[10%]"
       >
-        <h1 className="text-4xl font-bold font-host-grotesk text-center underline">
+        <h1 className="lg:text-4xl text-xl font-bold font-host-grotesk text-center underline">
           Les cours de pilate
         </h1>
-        <div className="flex flex-row justify-center gap-20">
-          <div className="flex flex-col items-start justify-start w-2/3 h-[60%] gap-10 font-host-grotesk">
-            <h1 className="text-2xl font-bold">Déroulement d'une séance</h1>
+        <div className="flex lg:flex-row flex-col justify-center gap-20">
+          <div className=" flex flex-col items-start justify-start lg:w-2/3 w-full lg:h-[60%] h-auto lg:gap-10 gap-5 font-host-grotesk">
+            <h1 className="lg:text-2xl text-xl font-bold">
+              Déroulement d'une séance
+            </h1>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
               quos. Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -45,7 +47,7 @@ const PilatesSection = () => {
               quos.
             </p>
           </div>
-          <div className="flex flex-col items-start justify-start w-1/3 h-[60%] gap-10 font-host-grotesk">
+          <div className="flex flex-col items-start justify-start lg:w-1/3 w-full h-[60%] gap-10 font-host-grotesk">
             <h1 className="text-2xl font-bold">Tarifs</h1>
             <table className="w-full border-separate border-spacing-y-2">
               <tbody>

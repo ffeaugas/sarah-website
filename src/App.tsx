@@ -7,6 +7,7 @@ import PresentationSection from './components/PresentationSection';
 import PilatesSection from './components/PilateSection';
 import ContactSection from './components/ContactSection';
 import { smoothScrollTo } from './utils/animations';
+import useMobileView from './hooks/useMobileView';
 
 function App() {
   const [hoveredSpan, setHoveredSpan] = useState<string | null>(null);
@@ -95,6 +96,7 @@ interface HeroSectionProps {
 
 const HeroSection = ({ spanData, setHoveredSpan }: HeroSectionProps) => {
   const { scrollYProgress } = useScroll();
+  const isMobile = useMobileView();
   const padding = useTransform(scrollYProgress, [0, 1], [0, 400]);
   const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
@@ -108,7 +110,7 @@ const HeroSection = ({ spanData, setHoveredSpan }: HeroSectionProps) => {
           ease: 'easeOut',
           delay: 0.3,
         }}
-        className="z-10 top-25 right-12 absolute font-host-grotesk text-gray-900 flex flex-col text-right"
+        className="z-30 lg:top-25 top-12 lg:right-12 right-4 absolute font-host-grotesk text-gray-900 flex flex-col text-right"
         style={{ opacity }}
       >
         <motion.h1 className="text-[3rem] lg:text-[8rem] font-semibold leading-none">
@@ -129,11 +131,17 @@ const HeroSection = ({ spanData, setHoveredSpan }: HeroSectionProps) => {
           ))}
         </h2>
       </motion.div>
-      <motion.div className="w-full h-full" style={{ padding }}>
+      <motion.div
+        className="w-full h-full"
+        style={{ padding: isMobile ? '0' : padding }}
+      >
         <img
-          src={'main.jpg'}
+          src={isMobile ? 'presentation-1.jpg' : 'main.jpg'}
           alt="Sarah Bencharef en équilibre au sommet d'une montagne"
-          className="w-full h-full object-cover rounded-xl"
+          className="w-full h-full object-cover"
+          style={{
+            borderRadius: scrollYProgress && !isMobile ? '20px' : '0',
+          }}
         />
       </motion.div>
     </>
