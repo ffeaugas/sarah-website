@@ -9,7 +9,7 @@ const useMobileView = (breakpoint: number = 1024) => {
     };
 
     checkIsMobile();
-
+    
     window.addEventListener('resize', checkIsMobile);
 
     return () => {

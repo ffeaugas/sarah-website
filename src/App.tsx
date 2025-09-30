@@ -20,7 +20,7 @@ function App() {
       image: '/dance.jpg',
       gradient:
         'linear-gradient(120deg, rgba(0,123,255,0.25) 0%, rgba(255,0,123,0.25) 100%)',
-      right: '50px',
+      right: '350px',
     },
     {
       id: 'choreographe',
@@ -36,7 +36,7 @@ function App() {
       image: '/teaching.jpg',
       gradient:
         'linear-gradient(120deg, rgba(255,128,0,0.25) 0%, rgba(255,0,0,0.25) 100%)',
-      right: '350px',
+      right: '50px',
     },
   ];
 
@@ -131,7 +131,12 @@ const HeroSection = ({
         className="lg:top-20 top-14 absolute font-host-grotesk text-gray-900 flex flex-row text-left justify-between w-full px-15"
         style={{ opacity }}
       >
-        <motion.h1 className="z-3 text-[3rem] lg:text-[9rem] font-semibold leading-none font-prata">
+        <motion.h1
+          className="z-3 text-[3rem] lg:text-[9rem] font-semibold leading-none font-prata"
+          style={{
+            letterSpacing: '-0.08em',
+          }}
+        >
           Sarah
           <br />
           Bencharef
